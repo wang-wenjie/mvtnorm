@@ -110,7 +110,8 @@ pmvnorm <- function(lower=-Inf, upper=Inf, mean=rep(0, length(lower)), corr=NULL
           stop(sQuote("sigma"), " not specified: cannot compute pnorm")
       } else {
           lower <- carg$lower - carg$mean
-          upper <- carg$upper - carg$mean
+          #upper <- carg$upper - carg$mean
+	  upper <- lower
           mean <- rep(0, length(lower))
           RET <- mvt(lower=lower, upper=upper, df=0, corr=corr, delta=mean,
                      algorithm = algorithm, ...)
@@ -122,8 +123,9 @@ pmvnorm <- function(lower=-Inf, upper=Inf, mean=rep(0, length(lower)), corr=NULL
                     error = 0, msg="univariate: using pnorm")
       } else {
           lower <- (carg$lower - carg$mean)/sqrt(diag(carg$sigma))
-          upper <- (carg$upper - carg$mean)/sqrt(diag(carg$sigma))
-          mean <- rep(0, length(lower))
+          #upper <- (carg$upper - carg$mean)/sqrt(diag(carg$sigma))
+          upper <- lower
+	  mean <- rep(0, length(lower))
           corr <- cov2cor(carg$sigma)
           RET <- mvt(lower=lower, upper=upper, df=0, corr=corr, delta=mean,
                      algorithm = algorithm, ...)
