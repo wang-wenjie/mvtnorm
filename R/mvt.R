@@ -212,9 +212,9 @@ mvt <- function(lower, upper, df, corr, delta, algorithm = GenzBretz(), ...)
 
     ### handle cases where the support is the empty set
     ##  Note: checkmvArgs() has been called ==> lower, upper are *not* NA
-    if (any(abs(d <- lower - upper) < sqrt(.Machine$double.eps^2)*(abs(lower)+abs(upper)) |
-            lower == upper)) ## e.g. Inf == Inf
-	return(list(value = 0, error = 0, msg = "lower == upper"))
+   # if (any(abs(d <- lower - upper) < sqrt(.Machine$double.eps^2)*(abs(lower)+abs(upper)) |
+   #         lower == upper)) ## e.g. Inf == Inf
+   #	return(list(value = 0, error = 0, msg = "lower == upper"))
 
     n <- ncol(corr)
     if (is.null(n) || n < 2) stop("dimension less then n = 2")
